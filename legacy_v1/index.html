@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>HomeFlow — Cozy Household Planning &amp; Coordination</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-layout-wrapper">
+    
+    <!-- LEFT SIDEBAR: Desktop Navigation & Household Profile -->
+    <aside class="sidebar" aria-label="Main Navigation">
+      <div class="sidebar-top">
+        <!-- Brand Wordmark -->
+        <div class="brand-container">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h1 class="brand-title">HomeFlow</h1>
+            <p class="brand-subtitle">Household Evening Planner</p>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <nav class="sidebar-nav">
+          <a href="#today" class="nav-link active" data-nav="today">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            <span>Today</span>
+          </a>
+          <a href="#dinner" class="nav-link" data-nav="dinner">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+            <span>Dinner Plan</span>
+          </a>
+          <a href="#groceries" class="nav-link" data-nav="groceries">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span>Shopping List</span>
+          </a>
+          <a href="#handoff" class="nav-link" data-nav="handoff">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+            <span>Delivery Handoff</span>
+          </a>
+          <a href="#tasks" class="nav-link" data-nav="tasks">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            <span>Household Tasks</span>
+          </a>
+          <button id="sidebar-assistant-btn" class="nav-link nav-btn-assistant" aria-label="Open Assistant Drawer">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <span>Quick Assistant</span>
+            <span class="nav-badge-pill">Ask</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- Household Profile & Controls -->
+      <div class="sidebar-bottom">
+        <div class="household-profile-card">
+          <div class="household-avatar-row">
+            <span class="avatar-chip" title="Alex">👨‍💼</span>
+            <span class="avatar-chip" title="Sam">👩‍🍳</span>
+            <span class="avatar-chip" title="Maya">👧</span>
+            <span class="avatar-chip" title="Jordan">👦</span>
+          </div>
+          <div class="household-details">
+            <span class="household-name">The Miller Family</span>
+            <span class="household-meta">4 members &bull; Weekday routine</span>
+          </div>
+        </div>
+
+        <div class="sidebar-actions-group">
+          <button id="view-sample-data-btn" class="sidebar-btn" aria-label="View Seeded Reference Data">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>Pantry &amp; Schedule</span>
+          </button>
+          <button id="reset-demo-btn" class="sidebar-btn sidebar-btn-danger" aria-label="Reset Demo Data">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+            <span>Reset Demo</span>
+          </button>
+        </div>
+
+        <div class="simulation-tag">
+          <span class="status-dot"></span>
+          <span>Simulated Agent Prototype</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN LIFESTYLE CONTENT AREA -->
+    <main class="main-content" id="today">
+      
+      <!-- Welcoming Page Header -->
+      <header class="page-greeting">
+        <div class="greeting-text">
+          <h2 class="welcome-heading">Let's make tonight easier.</h2>
+          <p class="welcome-subtext">Dinner coordination, pantry check, and evening tasks for the Miller home.</p>
+        </div>
+        <div class="sync-indicator-wrap">
+          <span class="state-sync-badge" id="state-sync-badge">
+            <span class="sync-dot"></span> All changes saved
+          </span>
+        </div>
+      </header>
+
+      <!-- HERO SECTION: Tonight's Dinner Plan (Primary Focus) -->
+      <section id="dinner" class="section-container" aria-label="Tonight's Dinner Plan">
+        <div class="section-header-row">
+          <span class="section-eyebrow">Dinner Plan</span>
+        </div>
+
+        <article class="dinner-hero-card" id="dinner-plan-container">
+          <!-- Populated by script.js -->
+        </article>
+      </section>
+
+      <!-- TWO-COLUMN SUPPORTING CONTENT GRID -->
+      <div class="content-columns-grid">
+        
+        <!-- LEFT COLUMN: Household Assistant & Discreet Tool Activity Details -->
+        <div class="content-column-main">
+          
+          <!-- Household Assistant Card -->
+          <section class="lifestyle-card assistant-card" aria-label="Household Assistant">
+            <div class="card-top-bar">
+              <div>
+                <span class="card-eyebrow">Household Assistant</span>
+                <h3 class="card-serif-title">HomeFlow Helper</h3>
+              </div>
+              <button id="clear-chat-btn" class="subtle-link-btn" title="Clear conversation history">Clear conversation</button>
+            </div>
+
+            <!-- Understated Suggested Prompts -->
+            <div class="suggested-prompts-wrap">
+              <span class="prompts-label">Try asking:</span>
+              <div class="prompts-row">
+                <button class="prompt-chip" data-prompt="Plan a simple dinner for four tonight and check what's missing.">
+                  <span class="chip-icon">🍽️</span>
+                  <span>Plan dinner for 4 &amp; check pantry</span>
+                </button>
+                <button class="prompt-chip" data-prompt="Show my shopping list and organize what I need to buy.">
+                  <span class="chip-icon">🛒</span>
+                  <span>Organize shopping list</span>
+                </button>
+                <button class="prompt-chip" data-prompt="Divide tonight's dinner preparation tasks.">
+                  <span class="chip-icon">📋</span>
+                  <span>Divide dinner prep tasks</span>
+                </button>
+                <button class="prompt-chip" data-prompt="Make tonight's dinner vegetarian with plant-based ingredients.">
+                  <span class="chip-icon">🌿</span>
+                  <span>Adapt dinner to vegetarian</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div id="chat-messages" class="chat-thread" aria-live="polite" aria-relevant="additions">
+              <!-- Dynamically populated by script.js -->
+            </div>
+
+            <!-- Subtle Activity Indicator -->
+            <div id="agent-typing" class="agent-typing-bar hidden" aria-hidden="true">
+              <span class="gentle-pulse"></span>
+              <span id="typing-status-text" class="typing-label">Checking household pantry...</span>
+            </div>
+
+            <!-- Clean, Understated Chat Input Bar -->
+            <form id="chat-form" class="chat-form-row">
+              <label for="user-input" class="sr-only">Ask HomeFlow</label>
+              <input 
+                type="text" 
+                id="user-input" 
+                class="chat-text-input" 
+                placeholder="Ask HomeFlow (e.g. 'Plan dinner', 'Show groceries', 'Divide tasks')..." 
+                autocomplete="off"
+                required
+              />
+              <button type="submit" id="send-btn" class="chat-send-btn" aria-label="Send message">
+                <span>Send</span>
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </section>
+
+          <!-- Discreet Expandable Section: "How your plan came together" (Requirement 7 & C) -->
+          <section class="activity-accordion-section" aria-label="Activity Details">
+            <details class="activity-disclosure" id="activity-disclosure">
+              <summary class="activity-summary-bar">
+                <div class="summary-left-group">
+                  <span class="summary-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  </span>
+                  <span class="summary-heading">How your plan came together</span>
+                </div>
+                <div class="summary-right-group">
+                  <span class="tool-count-badge" id="tool-count-badge">0 actions recorded</span>
+                  <svg class="disclosure-chevron" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </div>
+              </summary>
+              <div class="activity-body-content">
+                <div class="activity-subhead-row">
+                  <p class="activity-desc">Step-by-step tool executions and data checks performed by HomeFlow.</p>
+                  <button id="clear-activity-btn" class="subtle-link-btn" title="Clear activity trace">Clear details</button>
+                </div>
+                <div id="activity-log" class="activity-timeline">
+                  <!-- Rendered dynamically by script.js -->
+                </div>
+              </div>
+            </details>
+          </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Shopping List, Delivery Handoff & Tasks -->
+        <div class="content-column-side">
+          
+          <!-- Smart Shopping List Card -->
+          <section id="groceries" class="lifestyle-card shopping-card" aria-label="Shopping List">
+            <div class="card-top-bar">
+              <div>
+                <span class="card-eyebrow">Pantry Restock</span>
+                <h3 class="card-serif-title">Shopping List</h3>
+              </div>
+              <div class="card-header-actions">
+                <span class="items-count-badge" id="shopping-count-summary">3 items pending</span>
+                <button id="clear-completed-groceries-btn" class="subtle-link-btn" title="Remove purchased items">Clear done</button>
+              </div>
+            </div>
+
+            <!-- Inline Add Grocery Form -->
+            <form id="add-grocery-form" class="inline-add-row">
+              <input 
+                type="text" 
+                id="new-grocery-input" 
+                class="inline-text-input" 
+                placeholder="Add an item (e.g. Sourdough, Apples)..." 
+                autocomplete="off"
+              />
+              <select id="new-grocery-category" class="inline-category-select" aria-label="Select grocery category">
+                <option value="Produce">Produce</option>
+                <option value="Dairy & Refrigerated">Dairy</option>
+                <option value="Pantry & Seasonings" selected>Pantry</option>
+                <option value="Bakery & Bread">Bakery</option>
+                <option value="Protein & Meat">Protein</option>
+              </select>
+              <button type="submit" class="inline-add-btn" aria-label="Add item">+</button>
+            </form>
+
+            <!-- Categorized Shopping List Checklist -->
+            <div id="shopping-list-display" class="shopping-checklist-container">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </section>
+
+          <!-- FEATURE A: Grocery Delivery Handoff Card -->
+          <section id="handoff" class="lifestyle-card handoff-card" aria-label="Grocery Delivery Handoff">
+            <div class="card-top-bar">
+              <div>
+                <span class="card-eyebrow">Delivery Service Handoff</span>
+                <h3 class="card-serif-title">Order Groceries</h3>
+              </div>
+              <span class="items-count-badge" id="handoff-est-cost">$0.00 estimated</span>
+            </div>
+
+            <p class="handoff-intro-text">
+              Select items to purchase, copy your list, or handoff to your preferred delivery service. Checkout is completed safely on the merchant's official site.
+            </p>
+
+            <!-- Handoff Action Toolbar -->
+            <div class="handoff-toolbar">
+              <div class="handoff-select-tools">
+                <button id="handoff-select-all-btn" class="subtle-link-btn" type="button">Select all</button>
+                <span class="bullet-sep">&bull;</span>
+                <button id="handoff-select-none-btn" class="subtle-link-btn" type="button">Deselect all</button>
+              </div>
+              <div class="handoff-btn-group">
+                <button id="copy-handoff-list-btn" class="btn btn-secondary btn-sm" type="button" title="Copy selected items to clipboard">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy List</span>
+                </button>
+                <button id="confirm-purchase-pantry-btn" class="btn btn-primary btn-sm" type="button" title="Confirm purchased and add to pantry">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Move to Pantry</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Handoff Items Selection Checklist -->
+            <div id="handoff-items-container" class="handoff-items-checklist">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+
+            <!-- Delivery Service Selector & External Handoff Launcher -->
+            <div class="delivery-service-box">
+              <div class="service-box-header">
+                <label for="delivery-service-select" class="service-box-label">Choose Delivery Service:</label>
+                <span class="service-status-pill" id="selected-service-status">Manual Handoff</span>
+              </div>
+              <div class="service-selector-row">
+                <select id="delivery-service-select" class="lifestyle-select service-select">
+                  <!-- Populated by script.js from INTEGRATION_SERVICES config -->
+                </select>
+                <button id="launch-delivery-handoff-btn" class="btn btn-primary btn-sm" type="button">
+                  <span>Open Service</span>
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </button>
+              </div>
+              <p class="service-handoff-explanation" id="service-handoff-explanation">
+                Copies your organized shopping list to clipboard and opens the official storefront so you can paste or add items to your cart.
+              </p>
+            </div>
+          </section>
+
+          <!-- Dinner Preparation Tasks Card -->
+          <section id="tasks" class="lifestyle-card tasks-card" aria-label="Dinner Preparation Tasks">
+            <div class="card-top-bar">
+              <div>
+                <span class="card-eyebrow">Dinner Preparation</span>
+                <h3 class="card-serif-title">Family Tasks</h3>
+              </div>
+              <span class="items-count-badge" id="tasks-count-summary">0 of 0 completed</span>
+            </div>
+
+            <!-- Restrained Sage Progress Bar -->
+            <div class="task-progress-track" aria-hidden="true">
+              <div id="tasks-progress-bar" class="task-progress-fill" style="width: 0%;"></div>
+            </div>
+
+            <!-- Tasks Checklist -->
+            <div id="tasks-list-display" class="tasks-checklist-container">
+              <!-- Rendered dynamically by script.js -->
+            </div>
+          </section>
+
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- FEATURE B & D: Mobile Bottom Navigation Bar (Sticky on mobile viewports) -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <a href="#today" class="mobile-nav-item active" data-nav="today">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+      <span>Today</span>
+    </a>
+    <a href="#dinner" class="mobile-nav-item" data-nav="dinner">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line></svg>
+      <span>Dinner</span>
+    </a>
+    <a href="#groceries" class="mobile-nav-item" data-nav="groceries">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+      <span>Groceries</span>
+    </a>
+    <a href="#handoff" class="mobile-nav-item" data-nav="handoff">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+      <span>Handoff</span>
+    </a>
+    <a href="#tasks" class="mobile-nav-item" data-nav="tasks">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+      <span>Tasks</span>
+    </a>
+    <button id="mobile-assistant-trigger" class="mobile-nav-item mobile-assistant-btn" aria-label="Open Assistant">
+      <span class="mobile-fab-circle">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </span>
+      <span>Assistant</span>
+    </button>
+  </nav>
+
+  <!-- FEATURE B: Floating Quick-Access Assistant Launcher Button (Desktop & Tablet) -->
+  <button id="quick-assistant-fab" class="quick-assistant-fab" aria-label="Open Quick Assistant" title="Ask HomeFlow Assistant">
+    <span class="fab-icon">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+    </span>
+    <span class="fab-text">Ask HomeFlow</span>
+  </button>
+
+  <!-- FEATURE B: Persistent Quick-Access Assistant Drawer / Bottom Sheet -->
+  <div id="assistant-backdrop" class="drawer-backdrop hidden" aria-hidden="true"></div>
+  <aside id="quick-assistant-drawer" class="assistant-drawer hidden" role="dialog" aria-modal="true" aria-labelledby="drawer-title">
+    <div class="drawer-drag-handle" aria-hidden="true"></div>
+    <div class="drawer-header">
+      <div class="drawer-title-group">
+        <div class="drawer-avatar" aria-hidden="true">🌿</div>
+        <div>
+          <h3 id="drawer-title" class="drawer-serif-title">HomeFlow Assistant</h3>
+          <span class="drawer-meta-sub">Cozy evening helper &bull; Ready</span>
+        </div>
+      </div>
+      <button id="close-assistant-drawer-btn" class="drawer-close-btn" aria-label="Close Assistant">&times;</button>
+    </div>
+
+    <!-- Suggested Quick Prompts in Drawer -->
+    <div class="drawer-prompts-bar">
+      <button class="prompt-chip prompt-chip-sm" data-prompt="Plan a simple dinner for four tonight and check what's missing.">
+        <span>🍽️ Plan dinner for 4</span>
+      </button>
+      <button class="prompt-chip prompt-chip-sm" data-prompt="Show my shopping list and organize what I need to buy.">
+        <span>🛒 Show groceries</span>
+      </button>
+      <button class="prompt-chip prompt-chip-sm" data-prompt="Divide tonight's dinner preparation tasks.">
+        <span>📋 Divide tasks</span>
+      </button>
+      <button class="prompt-chip prompt-chip-sm" data-prompt="Prepare delivery handoff and show estimated grocery costs.">
+        <span>🚚 Delivery handoff</span>
+      </button>
+    </div>
+
+    <!-- Drawer Chat Messages -->
+    <div id="drawer-chat-messages" class="drawer-chat-thread" aria-live="polite">
+      <!-- Synced dynamically with appState.chatHistory -->
+    </div>
+
+    <!-- Drawer Typing Bar -->
+    <div id="drawer-agent-typing" class="agent-typing-bar hidden" aria-hidden="true">
+      <span class="gentle-pulse"></span>
+      <span id="drawer-typing-status-text" class="typing-label">Checking household pantry...</span>
+    </div>
+
+    <!-- Drawer Chat Input Form (Mobile Keyboard Friendly) -->
+    <form id="drawer-chat-form" class="drawer-chat-form">
+      <label for="drawer-user-input" class="sr-only">Type a message</label>
+      <input 
+        type="text" 
+        id="drawer-user-input" 
+        class="chat-text-input" 
+        placeholder="Ask HomeFlow (e.g. 'Plan dinner', 'Delivery handoff')..." 
+        autocomplete="off"
+        required
+      />
+      <button type="submit" id="drawer-send-btn" class="chat-send-btn" aria-label="Send message">
+        <span>Send</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      </button>
+    </form>
+  </aside>
+
+  <!-- MODAL: Seeded Reference Data (Pantry & Household Schedule) -->
+  <div id="data-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="card-eyebrow">Demo Knowledge Base</span>
+          <h3 id="modal-title" class="modal-title-serif">Household Reference Data</h3>
+        </div>
+        <button id="close-modal-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-intro">
+          HomeFlow reads this household data when running <code>getPantry()</code>, <code>getCalendar()</code>, and <code>getHouseholdMembers()</code>.
+        </p>
+
+        <div class="reference-sections-stack">
+          <div class="ref-block">
+            <h4 class="ref-heading">🥫 Household Pantry Inventory</h4>
+            <div id="pantry-reference-table" class="ref-table-wrap"></div>
+          </div>
+
+          <div class="ref-block">
+            <h4 class="ref-heading">📅 Tonight's Household Calendar</h4>
+            <div id="calendar-reference-table" class="ref-table-wrap"></div>
+          </div>
+
+          <div class="ref-block">
+            <h4 class="ref-heading">👥 Household Members</h4>
+            <div id="members-reference-table" class="ref-table-wrap"></div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="modal-ok-btn" class="btn btn-primary">Close Reference</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: Confirmation for Reset Demo Data -->
+  <div id="reset-confirm-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="reset-modal-title">
+    <div class="modal-card modal-card-sm">
+      <div class="modal-header">
+        <div>
+          <span class="card-eyebrow text-terracotta">Demo State</span>
+          <h3 id="reset-modal-title" class="modal-title-serif">Reset Demo Data?</h3>
+        </div>
+        <button id="cancel-reset-x-btn" class="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>This will restore HomeFlow's pantry, initial shopping list, calendar, tasks, and chat history back to the default demo state.</p>
+        <p class="text-muted text-sm" style="margin-top: 0.5rem;">Any newly added custom items or modified tasks will be cleared.</p>
+      </div>
+      <div class="modal-footer">
+        <button id="cancel-reset-btn" class="btn btn-secondary">Cancel</button>
+        <button id="confirm-reset-btn" class="btn btn-danger">Yes, Reset to Default</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container" aria-live="assertive"></div>
+
+  <!-- Vanilla Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
